@@ -9,6 +9,7 @@ const Search = ({
   setWeatherData,
   setDeniedText,
   setCanUpdateHistory,
+  setCanShowBtn,
   canUpdateHistory,
 }) => {
   const [searchValue, setSearchValue] = useState(null);
@@ -57,6 +58,11 @@ const Search = ({
         dataFromStore = [...dataFromStore, dataToStore];
         localStorage.setItem("searchHistory", JSON.stringify(dataFromStore));
         setCanUpdateHistory(!canUpdateHistory);
+        if (dataFromStore.length > 3) {
+          setCanShowBtn(true);
+        } else {
+          setCanShowBtn(false);
+        }
       }
     };
 

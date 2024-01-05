@@ -14,6 +14,7 @@ function App() {
   const [error, setError] = React.useState(null);
   const [deniedText, setDeniedText] = useState(null);
   const [canUpdateHistory, setCanUpdateHistory] = useState(false);
+  const [canShowBtn, setCanShowBtn] = useState(false);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -120,6 +121,7 @@ function App() {
             setError={setError}
             setDeniedText={setDeniedText}
             setCanUpdateHistory={setCanUpdateHistory}
+            setCanShowBtn={setCanShowBtn}
             canUpdateHistory={canUpdateHistory}
           />
         </Grid>
@@ -154,7 +156,11 @@ function App() {
             md={5}
             sx={{ paddingLeft: { sm: "0", md: "1em" } }}
           >
-            <SearchHistory canUpdateHistory={canUpdateHistory} />
+            <SearchHistory
+              canUpdateHistory={canUpdateHistory}
+              canShowBtn={canShowBtn}
+              setCanShowBtn={setCanShowBtn}
+            />
           </Grid>
         </Grid>
       </Grid>

@@ -3,7 +3,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 
 import SearchHistoryItem from "./SearchHistoryItem";
 
-const SearchHistory = ({ canUpdateHistory }) => {
+const SearchHistory = ({ canUpdateHistory, setCanShowBtn, canShowBtn }) => {
   const [historyData, setHistoryData] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [dataToShow, setDataToShow] = useState([]);
@@ -11,6 +11,9 @@ const SearchHistory = ({ canUpdateHistory }) => {
   useEffect(() => {
     const searchHistory =
       JSON.parse(localStorage.getItem("searchHistory")) || [];
+    if (searchHistory.lenth >= 3) {
+      setCanShowBtn(true);
+    }
     setHistoryData([...searchHistory]);
     setDataToShow([...searchHistory.slice(0, 3)]);
   }, [canUpdateHistory]);
@@ -212,13 +215,15 @@ const SearchHistory = ({ canUpdateHistory }) => {
                 </Grid>
               );
             })}
-            <Button
-              sx={{ marginTop: "1.5em" }}
-              variant="contained"
-              onClick={handleShowMore}
-            >
-              {showMore ? "...Show More" : "...Show Less"}
-            </Button>
+            {canShowBtn && (
+              <Button
+                sx={{ marginTop: "1.5em" }}
+                variant="contained"
+                onClick={handleShowMore}
+              >
+                {showMore ? "...Show More" : "...Show Less"}
+              </Button>
+            )}
           </>
         ) : (
           <Box

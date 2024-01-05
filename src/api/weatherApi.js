@@ -16,7 +16,6 @@ const GEO_API_OPTIONS = {
 
 export function fetchWeatherData(lat, lon, cb) {
   try {
-    console.log(lat, lon);
     axios
       .get(
         `${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
@@ -30,15 +29,15 @@ export function fetchWeatherData(lat, lon, cb) {
   }
 }
 
-export async function fetchCities(input) {
+export async function fetchCities(input, setError) {
   try {
     const response = await fetch(
       `${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${input}`,
       GEO_API_OPTIONS
     );
 
-    const data = await response.json();
-    return data;
+    const resJson = await response.json();
+    return resJson;
   } catch (error) {
     console.log(error);
     return;

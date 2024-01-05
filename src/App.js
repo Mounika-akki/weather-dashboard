@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import Search from "./components/Search";
 import Loading from "./components/Loading";
-import ErrorBox from "./components/ErrorBox";
 import Weather from "./components/Weather";
 import { fetchWeatherData } from "./api/weatherApi";
 import SearchDefault from "./components/SearchDefault";
 import SearchHistory from "./components/SearchHistory";
+import Error from "./components/Error";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = React.useState(null);
   const [deniedText, setDeniedText] = useState(null);
   const [canUpdateHistory, setCanUpdateHistory] = useState(false);
 
@@ -32,11 +32,10 @@ function App() {
 
     fetchWeatherData(latitude, longitude, (err, data) => {
       if (err) {
-        setError("Something went wrong!");
+        setError("Oops Something went wrong! Please try again later.");
       } else {
         setWeatherData(data || {});
       }
-      setError("Something went wrong!");
       setIsLoading(false);
     });
   };
@@ -62,7 +61,7 @@ function App() {
 
   if (error) {
     weatherDisplay = (
-      <ErrorBox margin="3rem auto" flex="inherit" errorMessage={error} />
+      <Error errorMessage={error} setError={setError} error={error} />
     );
   }
 

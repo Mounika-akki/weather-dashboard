@@ -15,7 +15,6 @@ const Search = ({
 
   const loadCities = async (inputValue) => {
     const citiesList = await fetchCities(inputValue);
-
     return {
       options: citiesList?.data.map((city) => {
         return {
@@ -27,7 +26,10 @@ const Search = ({
   };
 
   const handleSearchSubmit = () => {
-    if (!searchValue || !searchValue.value) return;
+    if (!searchValue || !searchValue.value) {
+      setError("City not found, Try any other name.");
+      return;
+    }
     setDeniedText(null);
     setIsLoading(true);
     const [latitude, longitude] = searchValue.value.split(" ");
@@ -61,8 +63,12 @@ const Search = ({
     };
 
     fetchWeatherData(latitude, longitude, fetchCb);
-
     setIsLoading(false);
+    setSearchValue(null);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e);
   };
 
   return (
@@ -86,7 +92,7 @@ const Search = ({
           placeholder="Search for a city"
           debounceTimeout={500}
           value={searchValue}
-          onChange={(val) => setSearchValue(val)}
+          onChange={handleSearchChange}
           loadOptions={loadCities}
         />
       </Box>

@@ -35,7 +35,6 @@ const Search = ({
     const [latitude, longitude] = searchValue.value.split(" ");
 
     const fetchCb = (err, data) => {
-      console.log(data);
       if (err) {
         setError(true);
       } else {
@@ -55,7 +54,6 @@ const Search = ({
         };
         let dataFromStore =
           JSON.parse(localStorage.getItem("searchHistory")) || [];
-        console.log(dataFromStore);
         dataFromStore = [...dataFromStore, dataToStore];
         localStorage.setItem("searchHistory", JSON.stringify(dataFromStore));
         setCanUpdateHistory(!canUpdateHistory);

@@ -85,7 +85,7 @@ function App() {
             alignItems: "center",
             position: "fixed",
             padding: "2.5em 1.5em 2em",
-            background: "rgba(41,91,139)",
+            background: "rgba(41, 91, 139, 1)",
             color: "rgba(253, 146, 45)",
             width: "105%",
             zIndex: 10,
@@ -94,7 +94,7 @@ function App() {
           <Typography
             variant="h4"
             sx={{
-              height: "2em",
+              height: "1.2em",
               justifySelf: "center",
               letterSpacing: 2,
               textTransform: "uppercase",

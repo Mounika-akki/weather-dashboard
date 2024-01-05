@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Box, Container, Divider, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import Search from "./components/Search";
 import Loading from "./components/Loading";
-import ErrorBox from "./components/Reusable/ErrorBox";
+import ErrorBox from "./components/ErrorBox";
 import Weather from "./components/Weather";
 import { fetchWeatherData } from "./api/weatherApi";
 import SearchDefault from "./components/SearchDefault";
@@ -30,21 +30,20 @@ function App() {
     const longitude = position.coords.longitude;
     setIsLoading(true);
 
-    // Make API call to OpenWeatherMap
     fetchWeatherData(latitude, longitude, (err, data) => {
       if (err) {
-        setError("Server Error. Try Again");
+        setError("Something went wrong!");
       } else {
         setWeatherData(data || {});
       }
-      // setError("Something went wrong!");
+      setError("Something went wrong!");
       setIsLoading(false);
     });
   };
 
   const locationErr = () => {
     setDeniedText(
-      "Location permission denied. search for any country/state/city to get current weather information"
+      "Location permission denied. Search for any country/state/city to get current weather information"
     );
     setIsLoading(false);
   };

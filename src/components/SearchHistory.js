@@ -46,7 +46,16 @@ const SearchHistory = ({ canUpdateHistory }) => {
       >
         Search History
       </Typography>
-      <Grid item container gap="4px" sx={{ width: "100%", overflow: "auto" }}>
+      <Grid
+        item
+        container
+        gap="4px"
+        sx={{
+          width: "100%",
+          overflow: "auto",
+          justifyContent: "center",
+        }}
+      >
         {historyData && historyData.length > 0 ? (
           historyData.map((item, idx) => {
             return (
@@ -69,7 +78,6 @@ const SearchHistory = ({ canUpdateHistory }) => {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    // alignItems: "center",
                     paddingLeft: { xs: "12px", sm: "20px", md: "32px" },
                   }}
                 >
@@ -192,11 +200,7 @@ const SearchHistory = ({ canUpdateHistory }) => {
             sx={{
               color: "#fff",
               fontSize: "0.8em",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
-              marginTop: "5em",
+              marginTop: "10em",
             }}
           >
             <Typography>**Your search history appears here**</Typography>

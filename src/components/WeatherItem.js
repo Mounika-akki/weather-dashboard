@@ -28,7 +28,7 @@ const WeatherItem = (props) => {
       item
       xs={3}
       sx={{
-        padding: "1em",
+        padding: "0.3em",
         height: "80px",
       }}
       justifyContent={"space-between"}
